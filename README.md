@@ -8,4 +8,5 @@ NodeJS Game Server compatible with Minecraft Client
 # Protocols
 
 1.7.10 - http://wiki.vg/index.php?title=Protocol&oldid=6003
+
 1.8 - http://wiki.vg/index.php?title=Protocol
