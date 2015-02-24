@@ -1,5 +1,5 @@
 {
-  "name": "MinecraftJS",
+  "name": "prismarine-server",
   "version": "0.0.0",
   "description": "Minecraft Server written in JS",
   "main": "app.js",
