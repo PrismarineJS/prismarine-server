@@ -7,9 +7,9 @@ Come Chat with us on [![Join the chat at https://gitter.im/dcbartlett/minecraftJ
 <table>
     <thead>
         <tr>
-            <th>Develop</th>
-            <th>QA</th>
             <th>Master</th>
+            <th>QA</th>
+            <th>Develop</th>
         </tr>
     </thead>
     <tbody>
