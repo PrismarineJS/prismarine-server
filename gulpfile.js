@@ -20,4 +20,5 @@ gulp.task('watch', function() {
     gulp.watch('src/**/*.js', ['compile']);
 });
 
+gulp.task('codeship', ['compile']);
 gulp.task('default', ['compile']);
