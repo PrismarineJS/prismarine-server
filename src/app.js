@@ -75,6 +75,31 @@ function messageHandler(message, client) {
     }
 }
 
+function encodeChunk(chunk) {
+    // 4 vertical 16x16x16 chunks, 3 bytes per block. 256 bytes of biome data
+    var buf = new Buffer(((16 * 16 * 16) * 4 * 3) + 256);
+    var cursor = 0;
+
+    for(var y=0; y<16; y++) {
+        for(var z=0; z<16; z++) {
+            for(var x=0; x<16; x++) {
+                var block = chunk.getBlock(x, y, z);
+                buf.writeUInt16LE((block.id << 4) | block.data, cursor); // blame rob if this is wrong
+                cursor += 2;
+                buf.writeUInt8(0, cursor); // TODO: Light data
+                cursor += 1;
+            }
+        }
+    }
+    for(var z=0; z<16; z++) {
+        for(var x=0; x<16; x++) {
+            buf.writeUInt8(0, cursor); // TODO: Biome data
+            cursor++;
+        }
+    }
+    return buf;
+}
+
 function runCommand(message, client, callback) {
     var message = message.split(" ");
     var response = "It looks like you tried to use a command.";
