@@ -85,17 +85,27 @@ function encodeChunk(chunk) {
             for(var z=0; z<16; z++) {
                 for(var x=0; x<16; x++) {
                     var block = chunk.getBlock(x, y + (n * 16), z);
-                    buf.writeUInt16LE((block.id << 4) | block.data, cursor); // blame rob if this is wrong
+                    buf.writeUInt16LE((block.id << 4) | block.data, cursor);
                     cursor += 2;
-                    buf.writeUInt8(0, cursor); // TODO: Light data
-                    // cursor += 1; // This should be here, but it only works when commented out
                 }
             }
         }
+        for(var y=0; y<16; y++) {
+            for(var z=0; z<16; z++) {
+                for(var x=0; x<16; x++) {
+                    var skyLight   = 15;
+                    var blockLight = 0;
+
+                    buf.writeUInt8((skyLight << 4) | blockLight, cursor); // TODO: Light data
+                    cursor++;
+                }
+            }
+        }
+
     }
     for(var z=0; z<16; z++) {
         for(var x=0; x<16; x++) {
-            buf.writeUInt8(0, cursor); // TODO: Biome data
+            buf.writeUInt8(21, cursor); // TODO: Biome data
             cursor++;
         }
     }
