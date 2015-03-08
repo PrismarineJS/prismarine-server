@@ -9,7 +9,7 @@
   "author": "Dennis Bartlett",
   "license": "MIT",
   "dependencies": {
-    "minecraft-protocol": "^0.12.3"
+    "minecraft-protocol": "^0.13.0"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
