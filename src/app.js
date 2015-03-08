@@ -27,16 +27,17 @@ server.on('login', function(client) {
         gameMode: 1,
         dimension: 0,
         difficulty: 2,
-        maxPlayers: server.maxPlayers
+        maxPlayers: server.maxPlayers,
+        reducedDebugInfo: false // We're gonna need every bit of debug info we can get
     });
-    
+
     client.write('position', {
         x: 0,
         y: 256,
         z: 0,
         yaw: 0,
         pitch: 0,
-        onGround: true
+        flags: 0
     });
 
     client.on('chat', function(data) {
@@ -64,7 +65,7 @@ function startTicks() {
     }, 50);
 }
 
-function messageHandler(message, client) { 
+function messageHandler(message, client) {
     if (message.split(" ")[0].indexOf('/') > -1) {
         runCommand(message, client, function(response) {
             messageClient(response, client);
@@ -102,7 +103,7 @@ function setServerTime(time) {
 
 function messageClient(message, client) {
     var server = "Server"
-    
+
     var msg = {
         text: message,
         color: "red"
@@ -128,7 +129,7 @@ function broadcast(data, exclude, username, packet) {
                         data
                     ]
                 };
-                client.write('chat', { message: JSON.stringify(msg) });
+                client.write('chat', { message: JSON.stringify(msg), position: 0 });
             }
         } else {
             client.write(packet, data);
