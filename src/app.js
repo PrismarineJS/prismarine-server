@@ -80,7 +80,9 @@ function encodeChunk(chunk) {
     var buf = new Buffer(((16 * 16 * 16) * 16 * 3) + 256);
     var cursor = 0;
 
+    // 16x16x16 chunks
     for(var n=0; n<16; n++) {
+        // block types
         for(var y=0; y<16; y++) {
             for(var z=0; z<16; z++) {
                 for(var x=0; x<16; x++) {
@@ -90,19 +92,32 @@ function encodeChunk(chunk) {
                 }
             }
         }
+        // block light
         for(var y=0; y<16; y++) {
             for(var z=0; z<16; z++) {
-                for(var x=0; x<16; x++) {
-                    var skyLight   = 15;
-                    var blockLight = 0;
+                for(var x=0; x<16; x += 2) {
+                    var blockLight   = 0; // getBlock(x,     y + (n * 16), z).blockLight
+                    var blockLight2  = 0; // getBlock(x + 1, y + (n * 16), z).blockLight
 
-                    buf.writeUInt8((skyLight << 4) | blockLight, cursor); // TODO: Light data
+                    buf.writeUInt8((blockLight << 4) | blockLight2, cursor);
                     cursor++;
                 }
             }
         }
+        // sky light
+        for(var y=0; y<16; y++) {
+            for(var z=0; z<16; z++) {
+                for(var x=0; x<16; x += 2) {
+                    var skyLight   = 7; // getBlock(x,     y + (n * 16), z).skyLight
+                    var skyLight2  = 7; // getBlock(x + 1, y + (n * 16), z).skyLight
 
+                     buf.writeUInt8((skyLight << 4) | skyLight2, cursor);
+                    cursor++;
+                }
+            }
+        }
     }
+    // biome data
     for(var z=0; z<16; z++) {
         for(var x=0; x<16; x++) {
             buf.writeUInt8(21, cursor); // TODO: Biome data
