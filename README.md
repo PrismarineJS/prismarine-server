@@ -1,6 +1,6 @@
 # Prismarine-Server
 
-[![Build Status](https://img.shields.io/codeship/2705b030-9df4-0132-f4bb-0a6e67eb63d6/master.svg)](https://codeship.com/projects/64678)
+[![Circle CI](https://img.shields.io/circleci/project/PrismarineJS/prismarine-server.svg)](https://circleci.com/gh/PrismarineJS/prismarine-server)
 [![Stories in Ready](https://badge.waffle.io/prismarineJS/prismarine-server.png?label=ready&title=Ready)](http://waffle.io/prismarineJS/prismarine-server)
 
 
