@@ -1,14 +1,19 @@
 {
-  "name": "MinecraftJS",
+  "name": "prismarine-server",
   "version": "0.0.0",
   "description": "Minecraft Server written in JS",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dennis Bartlett",
   "license": "MIT",
   "dependencies": {
-    "minecraft-protocol": "^0.12.3"
+    "minecraft-protocol": "^0.13.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-babel": "^4.0.0",
+    "gulp-sourcemaps": "^1.3.0"
   }
 }
