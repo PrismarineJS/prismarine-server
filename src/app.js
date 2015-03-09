@@ -75,6 +75,58 @@ function messageHandler(message, client) {
     }
 }
 
+function encodeChunk(chunk) {
+    // 16 vertical 16x16x16 chunks, 3 bytes per block. 256 bytes of biome data
+    var buf = new Buffer(((16 * 16 * 16) * 16 * 3) + 256);
+    var cursor = 0;
+
+    // 16x16x16 chunks
+    for(var n=0; n<16; n++) {
+        // block types
+        for(var y=0; y<16; y++) {
+            for(var z=0; z<16; z++) {
+                for(var x=0; x<16; x++) {
+                    var block = chunk.getBlock(x, y + (n * 16), z);
+                    buf.writeUInt16LE((block.id << 4) | block.data, cursor);
+                    cursor += 2;
+                }
+            }
+        }
+        // block light
+        for(var y=0; y<16; y++) {
+            for(var z=0; z<16; z++) {
+                for(var x=0; x<16; x += 2) {
+                    var blockLight   = 0; // getBlock(x,     y + (n * 16), z).blockLight
+                    var blockLight2  = 0; // getBlock(x + 1, y + (n * 16), z).blockLight
+
+                    buf.writeUInt8((blockLight << 4) | blockLight2, cursor);
+                    cursor++;
+                }
+            }
+        }
+        // sky light
+        for(var y=0; y<16; y++) {
+            for(var z=0; z<16; z++) {
+                for(var x=0; x<16; x += 2) {
+                    var skyLight   = 7; // getBlock(x,     y + (n * 16), z).skyLight
+                    var skyLight2  = 7; // getBlock(x + 1, y + (n * 16), z).skyLight
+
+                     buf.writeUInt8((skyLight << 4) | skyLight2, cursor);
+                    cursor++;
+                }
+            }
+        }
+    }
+    // biome data
+    for(var z=0; z<16; z++) {
+        for(var x=0; x<16; x++) {
+            buf.writeUInt8(21, cursor); // TODO: Biome data
+            cursor++;
+        }
+    }
+    return buf;
+}
+
 function runCommand(message, client, callback) {
     var message = message.split(" ");
     var response = "It looks like you tried to use a command.";
