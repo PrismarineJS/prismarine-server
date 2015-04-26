@@ -1,0 +1,58 @@
+module.exports = {
+    "motd": "A prismarine server",
+    "slots": 200,
+    "whitelist": true,
+    "pvp": false,
+    "worlds": [
+        {
+            "name": "overworld",
+            "type": 0,
+            "implementations": {
+                "world-generator": {
+                    "name": "prismarine-generator-flatland",
+                    "options": {
+                        "levels": [7, 3, 3, 3, 2]
+                    }
+                },
+            },
+            "modules": {
+
+            }
+        },
+        {
+            "name": "nether",
+            "generator": "prismarine-generator-nether",
+            "provider": "prismarine-provider-anvil",
+            "type": 1,
+            "implementations": {
+                "world-generator": {
+                    "name": "prismarine-nether-generator"
+                }
+            },
+            "modules": {
+
+            }
+        }
+    ],
+    "modules": {
+        "prismarine-minecraft-protocol": {
+            "port": 25565,
+            "online": true,
+            "compression": true,
+            "encryption": false
+        },
+        "prismarine-minecraft-texturepack": {
+            "pack": "content/mypack.zip",
+            "force": true
+        },
+        "prismarine-minecraft-physics": {}
+    },
+    "implementations": {
+        "chat": {
+            "name": "prismarine-vanilla-chat",
+            "options": {
+                "commandChar": "!"
+            }
+        }
+    }
+}

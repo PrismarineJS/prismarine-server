@@ -1,1 +1,1 @@
-module.exports = require('./dist/app.js');
+module.exports = require('./dist/prismarine.js');

@@ -1,3 +1,5 @@
-#! /usr/bin/env/node
-var prismarine = require('./index.js');
-var config     = require('./config.json');
+#! /usr/bin/env node
+var prismarine = require('../index.js');
+var config = JSON.parse(require('fs').readFileSync(process.cwd() + '/server.json'));
+
+var server = prismarine.createServer(config);
