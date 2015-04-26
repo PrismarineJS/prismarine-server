@@ -22,7 +22,7 @@ class Server {
     emit(event, data) {
         if(!Event.isValid(event))
             throw new Error(`Invalid event ID #${event}`);
-        super(event, data);
+        super.emit(event, data);
     }
 
 }
