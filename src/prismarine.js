@@ -1,4 +1,5 @@
 let World = function(){};//require('prismarine-world');
+let Event = require('./event.js');
 
 let autorequire = function(obj) {
     for(let name in obj)
@@ -7,9 +8,9 @@ let autorequire = function(obj) {
 
 class Server {
 
-    constructor() {
+    constructor(implementations) {
         this.worlds = new Map();
-        this.implementations = new Map();
+        this.implementations = implementations;
     }
 
     addWorld(options) {
@@ -18,17 +19,17 @@ class Server {
         this.worlds.set(cfg.name, world);
     }
 
+    emit(event, data) {
+        if(!Event.isValid(event))
+            throw new Error(`Invalid event ID #${event}`);
+        super(event, data);
+    }
+
 }
 
 module.exports.createServer = function(config) {
     config.modules = autorequire(config.modules);
-
-    for(let slot in config.implementations)
-        
-
     config.worlds.map(world => world.modules = autorequire(world.modules));
-
-
 
     let server = new Server();
 
