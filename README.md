@@ -1,4 +1,6 @@
-# Prismarine-Server
+prismarine-server
+=================
+> Note: This project is currently unmaintained. Look at [flying-squid](https://github.com/PrismarineJS/flying-squid/) for a working alternative
 
 [![Circle CI](https://img.shields.io/circleci/project/PrismarineJS/prismarine-server.svg)](https://circleci.com/gh/PrismarineJS/prismarine-server)
 [![Stories in Ready](https://badge.waffle.io/prismarineJS/prismarine-server.png?label=ready&title=Ready)](http://waffle.io/prismarineJS/prismarine-server)
