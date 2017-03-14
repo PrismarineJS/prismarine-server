@@ -1,5 +1,7 @@
 prismarine-server
 =================
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/PrismarineJS/prismarine-server.svg)](https://greenkeeper.io/)
 > Note: This project is currently unmaintained. Look at [flying-squid](https://github.com/PrismarineJS/flying-squid/) for a working alternative
 
 [![Circle CI](https://img.shields.io/circleci/project/PrismarineJS/prismarine-server.svg)](https://circleci.com/gh/PrismarineJS/prismarine-server)
